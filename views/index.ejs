@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> <%= title %> </title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container">
+       
+            <header>
+                <div class="headCont">
+                    <%- include('headerFooter/headerNew') %>
+                </div>
+            </header>
+            <main class="indexMain" id="indexMain" aria-labelledby='indexMain'>
+                
+                <div class="homeDesc">
+                    <p>Welcome to the Elite Members Club!. Chat with people from all over the world!</p>
+                <section class="homeButts"> <a href="/sign-up"> Sign Up! </a> </section>
+                </div>
+                
+            </main>
+            
+            <%- include('headerFooter/footer') %>
+
+        </div>
+    </body>
+</html>

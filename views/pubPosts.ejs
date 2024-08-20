@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> <%= title %> </title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container">
+       
+            <header>
+                <div class="headCont">
+                    <%- include('headerFooter/header') %>
+                </div>
+            </header>
+            <main class="indexMain" id="indexMain" aria-labelledby='indexMain'>
+                
+                <h2>The posts (for public) will appear here!</h2>
+                <p>Clcik here to join the club! </p>
+                
+            </main>
+            
+            <%- include('headerFooter/footer') %>
+
+        </div>
+    </body>
+</html>
