@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> <%= title %> </title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="headCont">
+                    <%- include('headerFooter/header') %>
+                </div>
+            </header>
+
+            <main class="logInMain" id="logInMain" aria-labelledby='logInMain'>
+                <form action="/posts/createMessage" method="POST">
+
+                    <% if (locals.errors) { %>
+                        <ul class="errorMsg">
+                            <% errors.forEach(error => { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+
+
+                    <h3>Add Message</h3>
+
+                    <label for="messageTitle">Message Title:</label>
+                    <input type="text" id="messageTitle" name="messageTitle" required>
+
+                    <label for="message">Message:</label>
+                    <input type="text" id="message" name="message" required>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </main>
+
+            <%- include('headerFooter/footer') %>
+        </div>
+            
+        
+    </body>
+</html>

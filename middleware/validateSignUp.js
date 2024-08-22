@@ -27,5 +27,6 @@ module.exports = [
     .isLength({ min: 4})
     .withMessage("Number of password characters must not be less than 4"),
   body('confirmPassword')
-    .custom( (value, { req }) => { return value === req.body.password }),
+    .custom( (value, { req }) => { return value === req.body.password })
+    .withMessage("Passwords not match!"),
 ];

@@ -5,7 +5,7 @@ module.exports =[
     body('password')
         .trim()
         .notEmpty()
-        .withMessage("Admin password required!")
+        .withMessage("Join code required!")
         .equals(process.env.JOIN_PASSWORD)
-        .withMessage('Incorrect password!'),
+        .withMessage('Incorrect code!'),
 ];

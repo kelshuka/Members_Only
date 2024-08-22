@@ -1,0 +1,71 @@
+
+/* .postsMain{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 200px;
+} */
+.postsMain {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #a82f2f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding-top: 120px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+    
+}
+
+.messageCard {
+    background-color: #ebe9e9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    position: relative;
+}
+
+.messageCard .global {
+    margin-bottom: 10px;
+}
+
+.messageTitle {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.messagePost {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.messageTime {
+    color: #555;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.messageBy {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    
+    color: #555;
+    font-weight: bold;
+}
+
+/* .admin-only {
+    text-align: right;
+} */

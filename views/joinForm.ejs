@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> <%= title %> </title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="headCont">
+                    <%- include('headerFooter/headerSignedIn') %>
+                </div>
+            </header>
+
+            <main class="logInMain" id="logInMain" aria-labelledby='logInMain'>
+                <form action="/pubPosts/join-club" method="POST">
+
+                    <% if (locals.errors) { %>
+                        <ul class="errorMsg">
+                            <% errors.forEach(error => { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+
+
+                    <h3>Enter code to join club!</h3>
+
+                    <label for="passWord">Enter Code:</label>
+                    <input type="password" id="passWord" name="password" required>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </main>
+
+            <%- include('headerFooter/footer') %>
+        </div>
+            
+        
+    </body>
+</html>

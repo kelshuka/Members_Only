@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> <%= title %> </title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./posts.css">
+    </head>
+    <body>
+        <div class="container">
+       
+            <header>
+                <div class="headCont">
+                    <%- include('headerFooter/header') %>
+                </div>
+            </header>
+            <main class="postsMain" id="postsMain" aria-labelledby='postsMain'>
+                
+                <div class="postsMessage">
+                    <button> <a href="/posts/createMessage"> Create a message </a></button>
+                </div>
+
+                <div class="message-Container">
+                    <% messages.forEach(message => { %>
+
+                        <div class="messageCard">
+
+                            <div class="global">
+                                <div class="messageTitle"> <%= message.title  %> </div>
+                                <div class="messagePost"> <%= message.message %> </div>
+                            </div>
+
+                            <% if (locals.currentUser) {%>
+                                <div class="messageTime"> On <%= message.time %> </div>
+                                <div class="messageBy"> By <%= message.username %> </div>
+                            <% }; %>
+
+                            <% if (locals.currentUser && locals.currentUser.is_admin) {%>
+                                <div>
+                                    <button> Delete</button>
+                                </div>
+                            <% }; %>
+
+                        </div>
+                    <% }); %>
+                </div>
+                
+            </main>
+            
+            <%- include('headerFooter/footer') %>
+
+        </div>
+    </body>
+</html>

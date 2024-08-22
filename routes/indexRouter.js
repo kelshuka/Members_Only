@@ -11,11 +11,13 @@ indexRouter.get("/sign-up", indexController.createNewMemberGet);
 indexRouter.post("/sign-up", indexController.createNewMemberPost);
 
 
+
 indexRouter.get("/log-in", indexController.loginGet);
 
 indexRouter.post("/log-in", indexController.loginPost);
 
 indexRouter.get("/log-out", indexController.logOutGet);
+
 
 
 module.exports = indexRouter;

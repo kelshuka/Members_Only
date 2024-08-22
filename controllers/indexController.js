@@ -7,7 +7,7 @@ const validateSignUp = require('../middleware/validateSignUp');
 
 
 
-// Create New Memberss
+// Create New Members
 const createNewMemberGet = asyncHandler( async (req,res) => {
     res.render("signUp", {title: 'Sign Up Form'});
 });
@@ -24,7 +24,7 @@ const createNewMemberPost = [
                 {
                     title: "Sign Up Form", errors: allErrors.array(),                 
                 });
-        }
+        };
 
         await db.signUp(req.body);
         //res.redirect("/pubPosts");
@@ -32,14 +32,14 @@ const createNewMemberPost = [
         const user = await db.getUserByUsername(req.body.username);
 
         //Authenticate the user immdeiately after sign up
-        passport.Authenticator('local', (err, user, info) => {
+        passport.authenticate('local', (err, user, info) => {
             if (err) {
                 return next(err); // Handle errors from passport.
             }
             if (!user) {
                 //Authentication failed
-                const errors = [{ msg: typeof info.message === 'string' ? info.message : info.message[0] }];
-                return res.render('signUp', {title: "Error", errors: errors});
+                //const errors = [{ msg: typeof info.message === 'string' ? info.message : info.message[0] }];
+                return res.render('signUp', {title: "Error", errors: "Authentication fail"});
             }
 
             // Log the user in
@@ -62,20 +62,23 @@ const loginGet = asyncHandler( async (req,res) => {
 
 const loginPost = asyncHandler( async (req, res, next) => {
 
-    passport.Authenticator('local', (err, user, info) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) {
             return next(err); // Handle errors from passport.
         }
         if (!user) {
             //Authentication failed
-            const errors = [{ msg: typeof info.message === 'string' ? info.message : info.message[0] }];
-            return res.render('login', {title: "Error", errors: errors});
+            //const errors = [{ msg: typeof info.message === 'string' ? info.message : info.message[0] }];
+            return res.render('login', {title: "Error", errors: "Authentication fail"});
         }
 
         // Log the user in
         req.logIn(user, (err) => {
             if (err) {
                 return next(err); // Handle errors from req.logIn
+            }
+            if (req.user.is_member){
+                return res.redirect('/posts')
             }
             // Redirect on succesful login
             res.redirect('/pubPosts')

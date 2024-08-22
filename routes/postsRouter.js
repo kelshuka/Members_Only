@@ -1,12 +1,15 @@
 const { Router } = require("express");
-const indexController = require("../controllers/indexController");
+const postsController = require("../controllers/postsController");
 const postRouter = Router();
 
 
-postRouter.get("/", (req, res) => {
-    res.render("pubPosts", {title: "Posts"});
-});
 
+
+
+postRouter.get("/", postsController.getAllPosts);
+
+postRouter.get("/createMessage", postsController.membersMessagesGet);
+postRouter.post("/createMessage", postsController.membersMessagesPost);
 
 
 
