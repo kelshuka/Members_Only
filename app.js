@@ -29,8 +29,7 @@ const pubPostRouter = require("./routes/pubPostsRouter");
 
 const app = express();
 
-//app.set("views", __dirname);
-//app.set("views", "./views");
+
 app.set("views", path.join(__dirname,"./views"));
 app.set("view engine", "ejs");
 
@@ -38,12 +37,12 @@ app.set("view engine", "ejs");
 
 
 app.use(session({
-    /* store: new (require('connect-pg-simple')(session)) ({
-        conString: process.env.DATABASE_URL // change to DATABASE_URL later
-    }), */
+    store: new (require('connect-pg-simple')(session)) ({
+        conString: process.env.DATABASE_URL 
+    }),
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,// false
+    saveUninitialized: false,
     cookie: {
         maxAge: 1 * 24 * 60 * 1000 // 1 day
     }
@@ -69,8 +68,6 @@ app.use( (req, res, next) => {
 
 // Debugging Middleware
 app.use( (req, res, next) => {
-    //console.log('session: ', req.session);
-    //console.log('user: ', req.user);
     next();
 });
 
@@ -124,10 +121,6 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(handleInternalError);
 
-/* app.use( (err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something is broken!');
-}); */
 
 
 
