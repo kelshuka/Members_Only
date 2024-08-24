@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> <%= title %> </title>
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./posts.css">
     </head>
     <body>
         <div class="container">
@@ -14,11 +15,24 @@
                     <%- include('headerFooter/headerSignedIn') %>
                 </div>
             </header>
-            <main class="indexMain" id="indexMain" aria-labelledby='indexMain'>
+            <main class="postsMain" id="postsMain" aria-labelledby='postsMain'>
                 
-                <h2>The posts (for public) will appear here!</h2>
-                <p class="homeButts"> <a href="/pubPosts/join-club"> 
-                    Click here to join the club! </a> </p>
+                
+                <div class="message-Container">
+                    <% messages.forEach(message => { %>
+
+                        <div class="messageCard">
+
+                            <div class="global">
+                                <div class="messageTitle"> <%= message.title  %> </div>
+                                <div class="messagePost"> <%= message.message %> </div>
+                            </div>
+
+                        </div>
+                    <% }); %>
+                </div>
+                <p class="createButt"> <a href="/pubPosts/join-club"> 
+                    Click here to join! </a> </p>
                 
             </main>
             

@@ -15,7 +15,7 @@
             </header>
 
             <main class="logInMain" id="logInMain" aria-labelledby='logInMain'>
-                <form action="/pubPosts/join-club" method="POST">
+                <form action="/admin" method="POST">
 
                     <% if (locals.errors) { %>
                         <ul class="errorMsg">
@@ -28,10 +28,9 @@
                     <% } %>
 
 
-                    <h3>Enter code to join club!</h3>
-                    <p>The code is "joining"</p>
+                    <h3>Admin authorization password required!</h3>
 
-                    <label for="passWord">Enter Code:</label>
+                    <label for="passWord">Enter Password:</label>
                     <input type="password" id="passWord" name="password" required>
 
                     <button type="submit">Submit</button>

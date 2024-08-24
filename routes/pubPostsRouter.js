@@ -3,9 +3,7 @@ const postsController = require("../controllers/postsController");
 const pubPostRouter = Router();
 
 
-pubPostRouter.get("/", (req, res) => {
-    res.render("pubPosts", {title: "Publick Posts"});
-});
+pubPostRouter.get("/", postsController.getPublicPosts);
 
 
 pubPostRouter.get("/join-club", postsController.joinClubGet);

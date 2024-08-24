@@ -5,7 +5,6 @@ const db = require("../db/queries");
 
 const validateJoinPassword = require('../middleware/validateJoinPassword');
 const validateMessage = require('../middleware/validateMessage');
-/* const validateAdminPassword = require('../middleware/validateAdminPassWord'); */
 
 
 
@@ -67,8 +66,23 @@ const getAllPosts = asyncHandler( async (req, res) => {
     res.render("posts", {title: "Posts", messages: allMessages});
 });
 
+const getPublicPosts = asyncHandler( async (req, res) => {
+    const allMessages = await db.fetchMessages();
+    //console.log(allMessages);
+    res.render("pubPosts", {title: "Public Posts", messages: allMessages});
+});
 
 
+// Delete Messages - ONly by an admin
+const deleteMessage = async (req, res) => {
+    const messageId = req.params.id;
+
+    await db.deleteMessage(messageId);
+
+    console.log(`Message ${messageId} deleted`);
+
+    res.redirect("/posts");
+}
 
 
 module.exports = {
@@ -76,5 +90,7 @@ module.exports = {
     joinClubPost,
     membersMessagesGet,
     membersMessagesPost,
-    getAllPosts
+    getAllPosts,
+    getPublicPosts,
+    deleteMessage
 };

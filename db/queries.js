@@ -33,6 +33,21 @@ async function setMember(id){
     }
 }
 
+async function setAdmin(id){
+    const memberSQL = `
+        UPDATE members
+        SET is_admin = true
+        WHERE members.id = $1;
+    `;
+    try {
+        await pool.query(memberSQL, [id]);
+        console.log(`Sucessfully added ${id} as admin.`);
+    } catch (error){
+        console.error(`Error adding ${id} as admin:`, error);
+        throw error;
+    }
+}
+
 async function addMessage(id, title, message){
     const messageSQL = `
     INSERT INTO posts (member_id, title, message, time)
@@ -52,12 +67,19 @@ async function fetchMessages(){
     return rows;
 }
 
+async function deleteMessage(messageId) {
+    const { rows } = await pool.query("DELETE FROM posts WHERE posts.ids = $1", [messageId]);
+    return rows;
+}
+
 
 
 module.exports = {
     signUp,
     getUserByUsername,
     setMember,
+    setAdmin,
     addMessage,
-    fetchMessages
+    fetchMessages,
+    deleteMessage
 };

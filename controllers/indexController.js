@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 const db = require("../db/queries");
 const validateSignUp = require('../middleware/validateSignUp');
-/* const validateAdminPassword = require('../middleware/validateAdminPassWord'); */
+const validateAdminPassword = require('../middleware/validateAdminPassWord');
 
 
 
@@ -96,11 +96,39 @@ const logOutGet = asyncHandler( async (req, res, next) => {
 });
 
 
+
+// Make user Admin
+const adminGet = asyncHandler( async (req,res) => {
+    res.render("adminForm", {title: 'Admin Form'});
+});
+
+const adminPost = [
+    validateAdminPassword,
+    
+    asyncHandler( async (req, res, next) => {
+    
+        const allErrors = validationResult(req);
+        if(!allErrors.isEmpty()){
+            return res.status(400).render('adminForm',
+                {
+                    title: "Admin Form", errors: allErrors.array(),                 
+                });
+        };
+
+
+        await db.setAdmin(req.user.id);
+        res.redirect("/posts");
+    }),
+];
+
+
 module.exports = {
     createNewMemberGet,
     createNewMemberPost,
     loginGet,
     loginPost,
-    logOutGet
+    logOutGet,
+    adminGet,
+    adminPost
 };
 
