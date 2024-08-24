@@ -30,7 +30,7 @@ const pubPostRouter = require("./routes/pubPostsRouter");
 const app = express();
 
 
-app.set("views", path.join(__dirname,"./views"));
+app.set("views", path.join(__dirname,"/views"));
 app.set("view engine", "ejs");
 
 
@@ -39,7 +39,7 @@ app.set("view engine", "ejs");
 app.use(session({
     store: new (require('connect-pg-simple')(session)) ({
         conString: process.env.DATABASE_URL 
-    }),
+    }), // I commented the store for developement phase
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
